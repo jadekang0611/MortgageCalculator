@@ -1,7 +1,6 @@
 package com.company;
 
 import java.text.DecimalFormat;
-import java.util.Scanner;
 
 public class Main {
     final static byte MONTHS_IN_YEAR = 12;
@@ -15,9 +14,9 @@ public class Main {
         double balance;
         final DecimalFormat df = new DecimalFormat("'$'0.00");
 
-        int principal = (int) readNumber("Principal: ", minPrincipal, maxPrincipal);
-        float interest = (float)readNumber("Interest: ", minInterest, maxInterest);
-        byte period = (byte)readNumber("Period: ", 0, 30);
+        int principal = (int) Console.readNumber("Principal: ", minPrincipal, maxPrincipal);
+        float interest = (float) Console.readNumber("Interest: ", minInterest, maxInterest);
+        byte period = (byte) Console.readNumber("Period: ", 0, 30);
         mortgage = calculateMortgage(principal, interest, period);
             String mortgageFormatted = df.format(mortgage);
             System.out.println("MORTGAGE: " + mortgageFormatted);
@@ -29,19 +28,6 @@ public class Main {
                 String balanceFormatted = df.format(balance);
                 System.out.println(balanceFormatted);
             }
-    }
-
-    public static double readNumber(String prompt, double min, double max) {
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true){
-            System.out.print(prompt);
-            value = scanner.nextFloat();
-            if (value >= min && value <= max)
-                break;
-            System.out.println("Enter a value between " + min + "and " + max);
-        }
-        return value;
     }
 
     public static double calculateMortgage(int principal, float interest, byte period) {
